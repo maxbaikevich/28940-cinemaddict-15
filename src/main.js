@@ -9,6 +9,9 @@ import {btnShowMoreTemplate} from './view/showMore';
 import {filmListExtraRated} from './view/film-list-extra-rated';
 import {filmListExtraCommented} from './view/film-list-extra-commented';
 import {amountFilmsTempla} from './view/amount-films';
+import {CommentListTimplate} from './view/comment-list';
+import {commentTemplate} from './view/comment';
+import {createnewCommentTemplate} from './view/create-new-comment';
 
 const renderСomponents = (container, template, where) => {
   container.insertAdjacentHTML(where, template);
@@ -41,4 +44,12 @@ const fotterStatistic = footer.querySelector('.footer__statistics');
 renderСomponents(fotterStatistic, amountFilmsTempla(), 'beforeend');
 const bodyPage = document.querySelector('body');
 renderСomponents(bodyPage, popUpTemplate(), 'beforeend');
+const filmDetails = document.querySelector('.film-details');
+const filmDetailsBottomContainer = filmDetails.querySelector('.film-details__bottom-container');
+renderСomponents(filmDetailsBottomContainer, CommentListTimplate(), 'beforeend');
+const comment = filmDetailsBottomContainer.querySelector('.film-details__comments-list');
+renderСomponents(comment, commentTemplate(), 'beforeend');
+const createComment = filmDetailsBottomContainer.querySelector('.film-details__comments-wrap');
+renderСomponents(createComment, createnewCommentTemplate(), 'beforeend');
+
 
