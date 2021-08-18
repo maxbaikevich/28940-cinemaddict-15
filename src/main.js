@@ -12,10 +12,13 @@ import {amountFilmsTempla} from './view/amount-films';
 import {CommentListTimplate} from './view/comment-list';
 import {commentTemplate} from './view/comment';
 import {createnewCommentTemplate} from './view/create-new-comment';
-
+import {generateFilm} from './mock/film'
+const DATA_FILM_COUNTER = 20
+const dataFilms = new Array(DATA_FILM_COUNTER).fill().map(generateFilm)
 const renderСomponents = (container, template, where) => {
   container.insertAdjacentHTML(where, template);
 };
+console.log('dataFilms main',dataFilms)
 const headerElement = document.querySelector('.header');
 const mainElement = document.querySelector('.main');
 renderСomponents(headerElement, userStatusTemplate(), 'beforeend');
@@ -25,8 +28,8 @@ renderСomponents(mainElement, filmsSection(), 'beforeend');
 const filmsElement = mainElement.querySelector('.films');
 renderСomponents(filmsElement, filmListTemplate(), 'beforeend');
 const filmsListContainer = filmsElement.querySelector('.films-list__container');
-for(let i = 0; i < 5; i++) {
-  renderСomponents(filmsListContainer, cardFilmTemplate(), 'beforeend');
+for(let i = 0; i <= DATA_FILM_COUNTER; i++) {
+  renderСomponents(filmsListContainer, cardFilmTemplate(dataFilms[i]), 'beforeend');
 }
 
 renderСomponents(filmsElement, btnShowMoreTemplate(), 'beforeend');
@@ -51,5 +54,6 @@ const comment = filmDetailsBottomContainer.querySelector('.film-details__comment
 renderСomponents(comment, commentTemplate(), 'beforeend');
 const createComment = filmDetailsBottomContainer.querySelector('.film-details__comments-wrap');
 renderСomponents(createComment, createnewCommentTemplate(), 'beforeend');
+console.log(generateFilm())
 
 
