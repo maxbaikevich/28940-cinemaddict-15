@@ -1,4 +1,4 @@
-export const amountFilmsTempla = () => (
-  `<p>130 291 movies inside</p>
-  `
+export const amountFilmsTempla = (data) => (
+  `<p>${data} movies inside</p>`
 );
+

@@ -1,12 +1,11 @@
 import dayjs from 'dayjs';
 export const cardFilmTemplate = (dataFilm) => {
-  console.log('dataFilm',dataFilm)
   //eslint-disable-next-line
   const {genre, poster, comments, release, isWatchlist, isFavorites, isWatched, title, rating, duration} = dataFilm;
-  const filmYearDate = dayjs(release).format('YYYY')
-  const stateBtn = (state) => {
-    return state ? 'film-card__controls-item--active' : ''
-  }
+  const filmYearDate = dayjs(release).format('YYYY');
+  const stateBtn = (state) => (
+    state ? 'film-card__controls-item--active' : ''
+  );
   return `<article class="film-card">
     <h3 class="film-card__title">${title}</h3>
     <p class="film-card__rating">${rating}</p>
@@ -23,6 +22,5 @@ export const cardFilmTemplate = (dataFilm) => {
       <button class="film-card__controls-item film-card__controls-item--mark-as-watched ${stateBtn(isWatched)}" type="button">Mark as watched</button>
       <button class="film-card__controls-item film-card__controls-item--favorite ${stateBtn(isFavorites)}" type="button">Mark as favorite</button>
     </div>
-  </article>
-  `
-}
+  </article>`;
+};
