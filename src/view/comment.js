@@ -1,3 +1,4 @@
+import {createElement} from '../utils';
 import dayjs from 'dayjs';
 export const commentTemplate = (comment, dataComments) => {
   const {date,emoji, name, text} =  dataComments.find((item) => item.id === comment);
@@ -22,3 +23,26 @@ export const commentTemplate = (comment, dataComments) => {
     </div>
   </li>`;
 };
+export default class Comment{
+  constructor(comment, dataComments) {
+    this._element = null;
+    this._comment = comment;
+    this._dataComments = dataComments;
+  }
+
+  getTemplate() {
+    return commentTemplate(this._comment, this._dataComments);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+
+}

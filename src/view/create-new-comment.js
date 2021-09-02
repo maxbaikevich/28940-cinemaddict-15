@@ -1,3 +1,4 @@
+import {createElement} from '../utils';
 export const createnewCommentTemplate = () => (
   `<div class="film-details__new-comment">
     <div class="film-details__add-emoji-label"></div>
@@ -24,3 +25,23 @@ export const createnewCommentTemplate = () => (
     </div>
   </div>`
 );
+export default class  CreatenewComment {
+  constructor(){
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createnewCommentTemplate();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
