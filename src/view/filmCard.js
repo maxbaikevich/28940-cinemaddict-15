@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
-export const cardFilmTemplate = (dataFilm) => {
+import {createElement} from '../utils';
+const cardFilmTemplate = (dataFilm) => {
   //eslint-disable-next-line
   const {genre, poster, comments, release, isWatchlist, isFavorites, isWatched, title, rating, duration} = dataFilm;
   const filmYearDate = dayjs(release).format('YYYY');
@@ -24,3 +25,25 @@ export const cardFilmTemplate = (dataFilm) => {
     </div>
   </article>`;
 };
+
+export default class cardFilm {
+  constructor(dataFilm) {
+    this._dataFilm = dataFilm;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return cardFilmTemplate(this._dataFilm);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

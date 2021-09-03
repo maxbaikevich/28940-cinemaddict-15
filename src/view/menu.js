@@ -1,4 +1,5 @@
-export const menuTemplate = (data) => {
+import {createElement} from '../utils';
+const menuTemplate = (data) => {
   const excretion = (mod) => {
     let count = 0;
     data.forEach((el) => {
@@ -27,3 +28,25 @@ export const menuTemplate = (data) => {
     <a href="#stats" class="main-navigation__additional">Stats</a>
   </nav>`;
 };
+
+export default class Menu {
+  constructor(menu) {
+    this._menu = menu;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return menuTemplate(this._menu);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
