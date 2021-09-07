@@ -86,24 +86,13 @@ const headerElement = document.querySelector('.header');
 const mainElement = document.querySelector('.main');
 renderElement(headerElement, new UserStatusView().getElement(), RenderPosition.BEFOREEND);
 renderElement(mainElement, new MenuView(dataFilms).getElement(), RenderPosition.BEFOREEND);
-dataFilms.length ? renderElement(mainElement, new SortView().getElement(), RenderPosition.BEFOREEND) : null;
+dataFilms.length && renderElement(mainElement, new SortView().getElement(), RenderPosition.BEFOREEND);
 const filmsBoardComponent = new FilmsBoardView();
 const listTitle = new ListTitle();
 const listTitleEmpty = new ListTitleEmpty();
 renderElement(mainElement, filmsBoardComponent.getElement(), RenderPosition.BEFOREEND);
-// const filmsElement = mainElement.querySelector('.films');
 const filmListComponent = new FilmListView();
-// const replaceTitleToEmptyTitle = () => {
-//   filmListComponent.getElement().replaceChild(listTitle.getElement(), listTitleEmpty.getElement())
-// }
-// const replaceTitleEmptyToTitle = () => {
-//   filmListComponent.getElement().replaceChild( listTitleEmpty.getElement(),listTitle.getElement())
-// }
-if(dataFilms.length) {
-  renderElement(filmListComponent.getElement(), listTitle.getElement(), RenderPosition.AFTERBEGIN);
-}else {
-  renderElement(filmListComponent.getElement(),  listTitleEmpty.getElement(), RenderPosition.AFTERBEGIN);
-}
+renderElement(filmListComponent.getElement(),dataFilms.length ? listTitle.getElement() : listTitleEmpty.getElement(), RenderPosition.AFTERBEGIN);
 renderElement(filmsBoardComponent.getElement(), filmListComponent.getElement(), RenderPosition.BEFOREEND);
 
 const filmsListContainer = document.querySelector('.films-list__container');
@@ -127,8 +116,8 @@ if(dataFilms.length > FILM_COUNT_PER_STEP) {
     }
   });
 }
-dataFilms.length ? renderElement(filmsBoardComponent.getElement(), new filmListExtraView().getElement(), RenderPosition.BEFOREEND) : null;
-dataFilms.length ? renderElement(filmsBoardComponent.getElement(), new filmListExtraCommentedView().getElement(), RenderPosition.BEFOREEND) : null;
+dataFilms.length && renderElement(filmsBoardComponent.getElement(), new filmListExtraView().getElement(), RenderPosition.BEFOREEND) ;
+dataFilms.length && renderElement(filmsBoardComponent.getElement(), new filmListExtraCommentedView().getElement(), RenderPosition.BEFOREEND);
 const filmListExtraRatedBlock = document.querySelectorAll('.films-list--extra');
 for(const element of filmListExtraRatedBlock) {
   const extraContainer = element.querySelector('.films-list__container');
